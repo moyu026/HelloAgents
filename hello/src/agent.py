@@ -59,22 +59,25 @@ class ReactAgent:
     collect tool signatures, and process multiple tool calls in a given round of interaction.
 
     Attributes:
+        name (str): The name of the agent.
         llm : The LLM client used to handle model-based completions.
-        model (str): The name of the model used for generating responses. Default is "llama-3.3-70b-versatile".
+        model (str): The name of the model used for generating responses. Default is "Qwen/Qwen3-8B".
         tools (list[Tool]): A list of Tool instances available for execution.
         tools_dict (dict): A dictionary mapping tool names to their corresponding Tool instances.
     """
 
     def __init__(
         self,
-        tools: list[Tool],
+        name: str = "ReactAgent",
+        tools: list[Tool] = None,
         model: str = "Qwen/Qwen3-8B",
         instructions: str = BASE_SYSTEM_PROMPT,
     ) -> None:
+        self.name = name
         self.llm = LLMClient()
         self.model = model
         self.instructions = instructions
-        self.tools = tools if isinstance(tools, list) else [tools]
+        self.tools = tools or []
         self.tools_dict = {tool.name: tool for tool in self.tools}
 
 

@@ -116,7 +116,11 @@ def calculate(expression: str) -> str:
 
 if __name__ == "__main__":
     tools = get_tools(["calculate", "get_weather", "fetch_web_content"])
-    agent = ReactAgent(instructions = "你是一个闲聊机器人小蛋", tools = tools)
+    agent = ReactAgent(
+        name="小蛋助手",
+        instructions="你是一个闲聊机器人小蛋",
+        tools=tools
+    )
     # print(agent.run("你是谁"))
     # print(agent.run("请问1+32x777+3023="))
     print(agent.run("上海天气怎么样"))
